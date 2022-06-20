@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('country', {
     //-------------------------------------- ---> OBLIGATORIA
     ID : {
-      type: DataTypes.STRING(5),
+      type: DataTypes.STRING(3),
       primaryKey:true,
       allowNull: false,
     },
@@ -25,12 +25,12 @@ module.exports = (sequelize) => {
       type : DataTypes.STRING,
       allowNull: false,
     },
-    //--------------------------------------
+    // //--------------------------------------
     capitalCity : {
       type : DataTypes.STRING,
       allowNull: false,
     },
-    //--------------------------------------
+    // //--------------------------------------
     subRegion : {
       type : DataTypes.STRING
     },
