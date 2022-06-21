@@ -8,13 +8,13 @@ import { Provider } from 'react-redux';
 
 
 ReactDOM.render(
-  <Provider>
+  // <Provider>
     <BrowserRouter>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </BrowserRouter>
-  </Provider>
+  // </Provider>
  ,
  
   document.getElementById('root')
