@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const {Atractive} = require('../db.js')
+const {Atractive, Country} = require('../db.js')
 const { Op } = require("sequelize");
+
 
 // ID : {
 
@@ -19,11 +20,18 @@ const { Op } = require("sequelize");
 
 
 router.post('/', async (req,res) => { 
-    const { name , difficulty, duration, season} = req.body
+    const { name , difficulty, duration, season,countries} = req.body
+    console.log(countries)
     try {
         let activity = await Atractive.create(req.body);
+        countries.forEach(async (e) => {
+            let countrie = await Country.findByPk(e)
+            await activity.addCountry(countrie)
+
+        })
         res.send(activity)
     } catch (error) {
+        console.log(error)
         res.send({error: "error"})
     }
 });

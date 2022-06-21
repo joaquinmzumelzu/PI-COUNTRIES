@@ -9,6 +9,7 @@ console.log(DB_USER)
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${DB_HOST}/countries`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  force: true
 });
 const basename = path.basename(__filename);
 
@@ -36,8 +37,8 @@ const { Country , Atractive} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Country.belongsToMany(Atractive, { through: 'CountryAtractive' });
-Atractive.belongsToMany(Country, { through: 'CountryAtractive' });  
+Country.belongsToMany(Atractive, { through: 'country_atractive' });
+Atractive.belongsToMany(Country, { through: 'country_atractive' });  
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
