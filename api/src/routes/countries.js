@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const axios = require('axios');
-const {Country} = require('../db.js')
+const {Country, Atractive} = require('../db.js')
 const { Op } = require("sequelize");
 
 
@@ -60,7 +60,7 @@ router.get('/', async (req,res) => { // query /students?name=jesus
 router.get('/:id', async (req,res) => { // query /students?name=jesus
     const {id} = req.params;
     try {
-      const countrie = await Country.findByPk(id.toUpperCase())
+      const countrie = await Country.findOne({where: {ID : id.toUpperCase()}, include: Atractive })
       if(!countrie) return res.status(404).json({error:'the code given does not match any country'})
       res.status(200).send(countrie)
     } catch (error) {
