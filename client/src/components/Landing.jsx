@@ -7,6 +7,7 @@ import s from '../styles/Landing.module.css'
 //
 
 export default function Landing (){
+  
     const dispatch = useDispatch()
     useEffect(() => {
       dispatch(getCountries())   

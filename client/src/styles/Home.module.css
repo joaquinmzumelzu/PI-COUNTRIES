@@ -1,0 +1,19 @@
+.header {
+    min-width: 100vh;
+    min-height: 7vh;
+    
+    background-image: url(../imgs/Screenshot\ from\ 2022-06-21\ 23-16-36.png);
+    background-size:cover;
+    background-repeat:no-repeat
+}
+
+.title {
+    text-align: center;
+}
+
+
+.options{
+    min-width: 100vh;
+    min-height: 7vh;
+    background-color: aqua;
+}

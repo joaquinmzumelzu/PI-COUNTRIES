@@ -1,0 +1,21 @@
+
+.div {
+    min-width: 20vh;
+    max-width: 20vh;
+    background-color: aqua;
+    padding: 1%;
+    border-radius: 5%;
+}
+
+/* .divImg {
+    max-width: 100%;
+} */
+
+.img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.p1 {
+    object-fit: cover;
+}
