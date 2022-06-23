@@ -1,0 +1,20 @@
+.div {
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.filterBy {
+    display:flex;
+}
+
+.filters2{
+    margin-left: 30px;
+    display: flex;
+}
+
+.fActivities {
+    margin-left: 40px;
+}

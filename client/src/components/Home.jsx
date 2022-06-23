@@ -1,5 +1,6 @@
 //
 import s from '../styles/Home.module.css'
+import Filters from './Filters'
 //
 
 export default function Home (props){
@@ -14,9 +15,9 @@ export default function Home (props){
              <h1>HOME</h1>
            </div>
 
-           <div className={s.options}>
-             
-           </div>
+           <Filters/>
+
+    
 
         </div>
     )
