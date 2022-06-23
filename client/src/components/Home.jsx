@@ -1,5 +1,6 @@
 //
 import s from '../styles/Home.module.css'
+import Container from './Container'
 import Filters from './Filters'
 //
 
@@ -16,7 +17,7 @@ export default function Home (props){
            </div>
 
            <Filters/>
-
+           <Container/>
     
 
         </div>
