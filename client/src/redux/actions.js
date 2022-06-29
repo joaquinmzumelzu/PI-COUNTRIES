@@ -4,6 +4,10 @@ export const GET_COUNTRIES = "GET_COUNTRIES";
 export const SEARCH_COUNTRIES = "SEARCH_COUNTRIES"
 export const SET_COUNTRIES = "SET_COUNTRIES"
 
+export const ORDER_BY = "ORDER_BY"
+
+
+
 
 export  function getCountries(){
     return function(dispatch){
@@ -22,3 +26,7 @@ export function setCountries (countries) {
 export function searchCountries (value) {
     return {type: SEARCH_COUNTRIES, payload: value}
 } 
+
+export function orderBY (typeOrder) {
+    return {type: ORDER_BY, payload: typeOrder}  
+}

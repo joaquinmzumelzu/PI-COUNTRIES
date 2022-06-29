@@ -1,5 +1,5 @@
 
- import {GET_COUNTRIES, SEARCH_COUNTRIES, SET_COUNTRIES} from './actions.js'
+ import {GET_COUNTRIES, ORDER_BY, SEARCH_COUNTRIES, SET_COUNTRIES} from './actions.js'
 
 
 const initialState = {
@@ -10,15 +10,7 @@ const initialState = {
 
     query:"",
 
-    alphabetically: {
-      status : true,
-      az : true,
-    },
-
-    byPopulation : {
-      status : false,
-      des : true,
-    },
+    orderBy: "AZ",
 
     continents: {
       Antartica : false,
@@ -39,12 +31,15 @@ export default function reducer(state = initialState,action){
   if(action.type === GET_COUNTRIES){
     return {...state, allCountries: action.payload}
   }
-if(action.type === SET_COUNTRIES){
+  if(action.type === SET_COUNTRIES){
   return {...state, filterCountries: action.payload}
 }
-if(action.type === SEARCH_COUNTRIES){
+  if(action.type === SEARCH_COUNTRIES){
   return {...state, filter: {...state.filter, query: action.payload}}
 }
+  if(action.type === ORDER_BY){
+    return {...state, filter : {...state.filter, orderBy: action.payload}}
+  } 
 
   return state;
 }

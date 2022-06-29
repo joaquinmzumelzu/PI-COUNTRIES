@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { searchCountries } from '../redux/actions'
+import { searchCountries, orderBY } from '../redux/actions'
 import s from '../styles/Filters.module.css'
 //
 
@@ -11,6 +11,7 @@ export default function Filters (props){
 
   const dispatch = useDispatch()
   const[input,setInput] = React.useState({value: "" });
+  const[orderBy,setOrderBy] = React.useState("AZ")
 
   // let query = useSelector(state => state.filter.query)
   
@@ -19,9 +20,17 @@ export default function Filters (props){
     console.log(input.value)
     
   } 
+
+  function handleFilterChanges(e){
+    e.preventDefault() 
+    if(e.target.value === "A - Z") setOrderBy("AZ")
+    if(e.target.value === "Z - A") setOrderBy("ZA")
+    if(e.target.value === "Higher Population") setOrderBy("HP")
+    if(e.target.value === "Lower Population") setOrderBy("LP")
+  }
   
   useEffect(() => dispatch(searchCountries(input.value)) , [input])
-  
+  useEffect(() => dispatch(orderBY(orderBy)) , [orderBy])
 
 
     return (
@@ -37,12 +46,15 @@ export default function Filters (props){
 
             <div className={s.orderBy}>
               <p>Order by</p>
-              <select>
+              <select onChange={e => handleFilterChanges(e)}>
 
-                <option>Alphabetically</option>
-                <option>By population</option>
-
+                <option>A - Z</option>
+                <option>Z - A</option>
+                <option>Higher Population</option>
+                <option>Lower Population</option>
+     
               </select>
+          
             </div> 
 
 
