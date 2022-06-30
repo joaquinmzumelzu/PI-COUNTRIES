@@ -3,17 +3,36 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { searchCountries, orderBY } from '../redux/actions'
+import { searchCountries, orderBY, SETContinents } from '../redux/actions'
 import s from '../styles/Filters.module.css'
 //
 
 export default function Filters (props){
 
   const dispatch = useDispatch()
-  const[input,setInput] = React.useState({value: "" });
+  const[input,setInput] = React.useState({value: "" })
   const[orderBy,setOrderBy] = React.useState("AZ")
+  const [continents, setContinents] = React.useState({
+    Antartica : false,
+    Africa : false ,
+    Asia : false,
+    Europe: false, 
+    NorthAmerica: false,
+    Oceania : false,
+    SouthAmerica:false,
+  });
 
   // let query = useSelector(state => state.filter.query)
+
+  function handleCheckBoxChanges(e){
+    console.log(e)
+    if(e.target.checked === true){
+        setContinents({...continents, [e.target.value] : true})
+    }
+    if(e.target.checked === false){
+        setContinents({...continents, [e.target.value] : false})
+    }
+  }
   
   function handleInputChanges(e){
     setInput({...input, value : e.target.value});
@@ -31,6 +50,24 @@ export default function Filters (props){
   
   useEffect(() => dispatch(searchCountries(input.value)) , [input])
   useEffect(() => dispatch(orderBY(orderBy)) , [orderBy])
+  useEffect(() => {
+    // let continents2 = [...continents]
+    let array = [];
+    for(let i in continents){
+      if(continents[i] === true){
+        if(i === 'NorthAmerica'){
+          array.push('North America')
+          continue
+        }
+        if(i === 'SouthAmerica'){
+          array.push('South America')
+          continue
+        }
+        array.push(i)
+      }
+    }
+    dispatch(SETContinents(array)) 
+  },[continents])
 
 
     return (
@@ -64,13 +101,16 @@ export default function Filters (props){
               <div className={s.filters2}>
               <div className={s.fContinents}>
                 <p>Continents</p>
-                <input key='Antartica'type='checkbox'></input>Antartica<br/>
-                <input key='Africa'type='checkbox'></input>Africa<br/>
-                <input key='Asia'type='checkbox'></input>Asia<br/>
-                <input key='Europe'type='checkbox'></input>Europe<br/>
-                <input key='North America'type='checkbox'></input>North America<br/>
-                <input key='Oceania'type='checkbox'></input>Oceania<br/>
-                <input key='South America'type='checkbox'></input>South America<br/>
+                <form onChange={handleCheckBoxChanges}>
+
+                  <input value='Antartica'type='checkbox'></input>Antartica<br/>
+                  <input value='Africa'type='checkbox'></input>Africa<br/>
+                  <input value='Asia'type='checkbox'></input>Asia<br/>
+                  <input value='Europe'type='checkbox'></input>Europe<br/>
+                  <input value='NorthAmerica'type='checkbox'></input>North America<br/>
+                  <input value='Oceania'type='checkbox'></input>Oceania<br/>
+                  <input value='SouthAmerica'type='checkbox'></input>South America<br/>
+                </form>
                 
               </div>
 

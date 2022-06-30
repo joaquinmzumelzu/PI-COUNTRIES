@@ -35,6 +35,9 @@ export default function Container (props){
       if(filter.orderBy === "ZA") filtrados.sort((a, b) => b.name.localeCompare(a.name))
       if(filter.orderBy === "HP") filtrados.sort((a, b) => b.population - a.population)
       if(filter.orderBy === "LP") filtrados.sort((a, b) => a.population - b.population)
+
+      if(filter.continents.length) filtrados = filtrados.filter(e => filter.continents.includes(e.continent))
+      
       
       dispatch(setCountries(filtrados))
     }, [filter,allCountries,dispatch])

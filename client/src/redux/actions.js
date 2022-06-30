@@ -5,6 +5,7 @@ export const SEARCH_COUNTRIES = "SEARCH_COUNTRIES"
 export const SET_COUNTRIES = "SET_COUNTRIES"
 
 export const ORDER_BY = "ORDER_BY"
+export const SET_CONTINENTS = "SET_CONTINENTS"
 
 
 
@@ -29,4 +30,8 @@ export function searchCountries (value) {
 
 export function orderBY (typeOrder) {
     return {type: ORDER_BY, payload: typeOrder}  
+}
+
+export function SETContinents (value) {
+    return {type: SET_CONTINENTS, payload:value}
 }
