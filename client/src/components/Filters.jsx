@@ -103,7 +103,7 @@ export default function Filters (props){
                 <p>Continents</p>
                 <form onChange={handleCheckBoxChanges}>
 
-                  <input value='Antartica'type='checkbox'></input>Antartica<br/>
+                  <input value='Antarctica'type='checkbox'></input>Antarctica<br/>
                   <input value='Africa'type='checkbox'></input>Africa<br/>
                   <input value='Asia'type='checkbox'></input>Asia<br/>
                   <input value='Europe'type='checkbox'></input>Europe<br/>
