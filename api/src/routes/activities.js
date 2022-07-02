@@ -25,7 +25,7 @@ router.post('/', async (req,res) => {
     try {
         let activity = await Atractive.create(req.body);
         countries.forEach(async (e) => {
-            let countrie = await Country.findByPk(e)
+            let countrie = await Country.findByPk(e.id)
             await activity.addCountry(countrie)
 
         })

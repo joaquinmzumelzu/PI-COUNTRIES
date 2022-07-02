@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import s from '../styles/Activity.module.css'
 import CardMini from './CardMini';
+import axios from 'axios';
 //
 
 export default function Activity (){
@@ -79,7 +80,16 @@ export default function Activity (){
       e.preventDefault();
       let val = validate(); 
       val = val.join('\n')
-      if(val) alert(val)
+      if(val) return alert(val)
+      let obj = {...form}
+      
+      axios.post('http://localhost:3001/activities', obj)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
 
     return (

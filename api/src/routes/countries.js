@@ -14,10 +14,16 @@ const { Op } = require("sequelize");
 //  subRegion : {
 //  area :{
 //  population : {
+// const https = require('https')
+// const instance = axios.create({
+//    httpsAgent : new https.Agent({
+//       rejectUnauthorized:false
+//    })
+// });
 
 router.get('/', async (req,res) => { // query /students?name=jesus
    try {
-      const response = await axios.get('https://restcountries.com/v3/all');
+      const response = await axios.get('http://restcountries.com/v3/all');
       const allCountries = response.data
       const {name} = req.query;
 
