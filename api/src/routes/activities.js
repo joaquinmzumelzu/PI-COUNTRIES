@@ -36,6 +36,29 @@ router.post('/', async (req,res) => {
     }
 });
 
+router.get('/', async (req,res) => {
+    try {
+      let allActivities = await Atractive.findAll()
+      if(!allActivities) return res.json('no activities where found')  
+      res.json(allActivities) 
+    } catch (error) {
+      console.log(error)  
+    }
+})
+
+router.get('/countries', async (req,res) => {
+    try {
+      let allActivities = await Atractive.findAll({include:Country})
+      
+      if(!allActivities) return res.json('no activities where found')  
+      res.json(allActivities) 
+    } catch (error) {
+      console.log(error)  
+    }
+})
+
+
+
 
 
 module.exports = router ;

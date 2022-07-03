@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { searchCountries, orderBY, SETContinents } from '../redux/actions'
+import { searchCountries, orderBY, SETContinents, setActivitiesC } from '../redux/actions'
 import s from '../styles/Filters.module.css'
 //
 
@@ -21,7 +21,9 @@ export default function Filters (props){
     Oceania : false,
     SouthAmerica:false,
   });
-
+  const [activities, setActivities ] = React.useState('none')
+  
+  const allActivities = useSelector(state => state.allActivities)
   // let query = useSelector(state => state.filter.query)
 
   function handleCheckBoxChanges(e){
@@ -36,7 +38,6 @@ export default function Filters (props){
   
   function handleInputChanges(e){
     setInput({...input, value : e.target.value});
-    console.log(input.value)
     
   } 
 
@@ -46,6 +47,12 @@ export default function Filters (props){
     if(e.target.value === "Z - A") setOrderBy("ZA")
     if(e.target.value === "Higher Population") setOrderBy("HP")
     if(e.target.value === "Lower Population") setOrderBy("LP")
+  }
+
+  function handleActivitiyChanges(e){
+    e.preventDefault() 
+    setActivities(e.target.value)
+    dispatch(setActivitiesC(e.target.value))
   }
   
   useEffect(() => dispatch(searchCountries(input.value)) , [input])
@@ -116,10 +123,13 @@ export default function Filters (props){
 
               <div className={s.fActivities}>
                 <p>Activities</p>
-                <select>
-                  {/* aqui iria un map con las actividades */}
-                  <option>soccer</option>
-                  <option>basquetball</option>
+
+                <select onChange={handleActivitiyChanges} defaultValue="Select option">
+                  <option disabled value="Select option">Select activity</option>
+                  <option value='none'>None</option>
+                  {allActivities?.map(e => {
+                    return <option value={e.name}>{e.name}</option>
+                  })}
 
                 </select> 
               </div>

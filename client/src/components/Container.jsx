@@ -16,19 +16,27 @@ export default function Container (props){
 
     let filterCountries = useSelector(state => state.filterCountries)
     const filter = useSelector(state => state.filter)
-
+    const activityCountrie = useSelector(state => state.activityCountrie)
     useEffect(() => {
       let filtrados = [];
 
-      if(filter.query === ""){
-        console.log("entro")
-        filtrados = [...allCountries]
+      
+      filtrados = [...allCountries]
         // dispatch(setCountries(allCountries))
+        if(filter.activities !== 'none'){
+          let activity = [...activityCountrie].find(e => e.name === filter.activities)
+          filtrados = [...activity.countries]
+        }
+        
+      if(filter.query !== ''){
+        filtrados = [...filtrados].filter(e => e.name.toLowerCase().includes(filter.query.toLowerCase()))
       }
-      else{
-        filtrados = [...allCountries].filter(e => e.name.toLowerCase().includes(filter.query.toLowerCase()))
-        //  
-      }
+
+      // else{
+      //   filtrados = [...allCountries].filter(e => e.name.toLowerCase().includes(filter.query.toLowerCase()))
+      //   //  
+      // }
+
       // -----------------------------------------------------------------------------------------------
    
       if(filter.orderBy === "AZ") filtrados.sort((a, b) => a.name.localeCompare(b.name))
@@ -45,7 +53,7 @@ export default function Container (props){
     return (
         <div className={s.div}>
            {
-              filterCountries.map(e => {
+              filterCountries?.map(e => {
               return <Card continent={e.continent} name={e.name} img={e.img}/>
 
            })

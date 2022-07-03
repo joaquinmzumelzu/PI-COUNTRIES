@@ -4,9 +4,13 @@ import { useSelector } from 'react-redux'
 import s from '../styles/Activity.module.css'
 import CardMini from './CardMini';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { getAllActivities, getAllActivitiesCountries } from '../redux/actions';
+import { Link } from 'react-router-dom';
 //
 
 export default function Activity (){
+    const dispatch = useDispatch()
 
     let allCountries = useSelector(state => state.allCountries);
     let sorted = [...allCountries].sort((a, b) => a.name.localeCompare(b.name))
@@ -21,6 +25,8 @@ export default function Activity (){
     })
 
     const[errors,setErrors] = useState({})
+
+    const allActivities = useSelector(state => state.allActivities)
 
 //-------------------------------------------------------------------------------
     function nameToState(e){
@@ -76,24 +82,28 @@ export default function Activity (){
       return errors;
     }
 
-    function postear (e) {
+    async function postear (e) {
       e.preventDefault();
       let val = validate(); 
       val = val.join('\n')
       if(val) return alert(val)
       let obj = {...form}
       
-      axios.post('http://localhost:3001/activities', obj)
+     await axios.post('http://localhost:3001/activities', obj)
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
+      
+      dispatch(getAllActivities())
+      dispatch(getAllActivitiesCountries())
     }
 
     return (
         <div className={s.div}>
+          <Link to='/countries'>aqui</Link>
           <form onSubmit={postear}>
 
             <div className={s.name}>

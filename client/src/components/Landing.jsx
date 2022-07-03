@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getCountries } from '../redux/actions'
+import { getAllActivities, getAllActivitiesCountries, getCountries } from '../redux/actions'
 import s from '../styles/Landing.module.css'
 //
 
@@ -10,7 +10,9 @@ export default function Landing (){
   
     const dispatch = useDispatch()
     useEffect(() => {
-      dispatch(getCountries())   
+      dispatch(getCountries()) 
+      dispatch(getAllActivities())  
+      dispatch(getAllActivitiesCountries())
     },[dispatch]) 
 
     return (

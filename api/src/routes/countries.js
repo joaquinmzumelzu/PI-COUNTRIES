@@ -6,21 +6,6 @@ const {Country, Atractive} = require('../db.js')
 const { Op } = require("sequelize");
 
 
-//  ID : {
-//  name: {
-//  img : {
-//  continent: {
-//  capitalCity : {
-//  subRegion : {
-//  area :{
-//  population : {
-// const https = require('https')
-// const instance = axios.create({
-//    httpsAgent : new https.Agent({
-//       rejectUnauthorized:false
-//    })
-// });
-
 router.get('/', async (req,res) => { // query /students?name=jesus
    try {
       const response = await axios.get('http://restcountries.com/v3/all');
@@ -40,7 +25,8 @@ router.get('/', async (req,res) => { // query /students?name=jesus
             subRegion: e.subregion || "",
             area: e.area,
             population: e.population,
-         }
+         },
+         include: Atractive 
       })) 
       if(!name) return res.json(await Country.findAll())
       // ---------------------------------------------------
