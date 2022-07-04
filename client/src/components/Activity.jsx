@@ -9,9 +9,9 @@ import { getAllActivities, getAllActivitiesCountries } from '../redux/actions';
 import { Link } from 'react-router-dom';
 //
 
-export default function Activity (){
+export default function Activity (props){
     const dispatch = useDispatch()
-
+    console.log(props)
     let allCountries = useSelector(state => state.allCountries);
     let sorted = [...allCountries].sort((a, b) => a.name.localeCompare(b.name))
 

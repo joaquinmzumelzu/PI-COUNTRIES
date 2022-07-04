@@ -1,7 +1,8 @@
 
  import {GET_COUNTRIES, ORDER_BY, SEARCH_COUNTRIES,
    SET_CONTINENTS, SET_COUNTRIES, GET_ALL_ACTIVITIES,
-   GET_ALL_ACTIVITIES_COUNTRIES,SET_ACTIVITIES_C} from './actions.js'
+   GET_ALL_ACTIVITIES_COUNTRIES,SET_ACTIVITIES_C,
+  GET_BY_PK} from './actions.js'
 
 
 const initialState = {
@@ -47,6 +48,9 @@ export default function reducer(state = initialState,action){
   }
   if(action.type === GET_ALL_ACTIVITIES_COUNTRIES){
     return {...state, activityCountrie: action.payload}
+  }
+  if(action.type === GET_BY_PK){
+    return {...state , countryPK: action.payload}
   }
 
   return state;

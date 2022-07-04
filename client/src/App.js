@@ -4,6 +4,7 @@ import Landing from './components/Landing';
 // import Card from './components/Card';
 import Home from './components/Home';
 import Activity from './components/Activity';
+import Country from './components/Country';
 
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
 
       <Route exact path='/activity'>
         <Activity/>
+      </Route>
+
+      <Route exact path='/countries/:id'>
+        <Country/>
       </Route>
 
     </div>

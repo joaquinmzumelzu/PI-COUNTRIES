@@ -76,6 +76,11 @@ export default function Filters (props){
     dispatch(SETContinents(array)) 
   },[continents])
 
+  const filter = useSelector(state => state.filter)
+  useEffect(() => {
+      dispatch(setActivitiesC(filter.activities))
+  }, [])
+
 
     return (
         <div className={s.div}>
@@ -124,8 +129,7 @@ export default function Filters (props){
               <div className={s.fActivities}>
                 <p>Activities</p>
 
-                <select onChange={handleActivitiyChanges} defaultValue="Select option">
-                  <option disabled value="Select option">Select activity</option>
+                <select onChange={handleActivitiyChanges} defaultValue={filter.activities}>
                   <option value='none'>None</option>
                   {allActivities?.map(e => {
                     return <option value={e.name}>{e.name}</option>

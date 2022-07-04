@@ -19,7 +19,7 @@ router.get('/', async (req,res) => { // query /students?name=jesus
          defaults: {
             ID: e.cca3,
             name: e.name.common,
-            img: e.flags[0], // --> en la api aparece como objeto pero en realidad es array???
+            img: e.flags[1], // --> en la api aparece como objeto pero en realidad es array???
             continent: e.continents[0], // puede que sea [0]
             capitalCity: e.capital? e.capital[0] : "",
             subRegion: e.subregion || "",

@@ -7,6 +7,9 @@
     border-radius: 5%;
 }
 
+.link {
+    text-decoration: none;
+}
 /* .divImg {
     max-width: 100%;
 } */
@@ -18,4 +21,5 @@
 
 .p1 {
     object-fit: cover;
+    color: black;
 }
