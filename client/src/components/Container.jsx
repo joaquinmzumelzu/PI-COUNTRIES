@@ -54,14 +54,6 @@ export default function Container (props){
     useEffect(() => dispatch(getAllActivitiesCountries()),[filter])
     return (
         <div className={s.div}>
-           {/* {
-              filterCountries?.map(e => {
-              return <Card continent={e.continent} name={e.name} img={e.img}/>
-
-           })
-
-           
-           } */}
            <Pagination/>
         </div>
     )

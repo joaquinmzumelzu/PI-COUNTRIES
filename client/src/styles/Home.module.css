@@ -1,14 +1,40 @@
-.header {
-    min-width: 100vw;
-    min-height: 7vh;
-    
-    background-image: url(../imgs/Screenshot\ from\ 2022-06-21\ 23-16-36.png);
-    background-size:cover;
-    background-repeat:no-repeat
+
+.div {
+    margin: 0;
+    background-image: url('../imgs/38858-tierra.jpg');
+    background-size: cover;
+    display: flex;
+}
+
+.filters{
+    height: 100%;
+    width: 20vw;
+    background-color: aqua;
+}
+
+.effect {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+    /* background: rgba(243, 244, 248, 0.01);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px); */
+
+
+
 }
 
 .title {
     text-align: center;
+    padding: 0%;
+    margin: 0%;
+    color: white;
 }
 
 

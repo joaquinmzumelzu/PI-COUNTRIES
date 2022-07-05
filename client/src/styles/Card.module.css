@@ -1,25 +1,39 @@
 
 .div {
-    min-width: 20vh;
-    max-width: 20vh;
-    background-color: aqua;
-    padding: 1%;
-    border-radius: 5%;
+    min-width: 12vw;
+    max-width: 12vw;
+    height: 200px;
+
+    background: rgba(52, 65, 116, 0.44);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64);
+    margin: 4px;
+    margin-bottom: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .link {
     text-decoration: none;
 }
-/* .divImg {
-    max-width: 100%;
-} */
 
-.img {
-    max-width: 100%;
-    object-fit: cover;
+
+.img {  
+    box-sizing: border-box;
+    padding: 6px;
+    width: 95%;
+    
+    aspect-ratio: 3/2;
+    
 }
 
 .p1 {
     object-fit: cover;
-    color: black;
+    color: white    ;
+    text-align: center;
 }
