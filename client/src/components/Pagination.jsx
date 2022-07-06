@@ -10,11 +10,10 @@ export default function Pagination (){
 
     const [current, setCurrent] = useState(0)
     const [currentPage, setCurrentPage] = useState([])
-    const min = 0
     const max = 9
     const filterCountries = useSelector(state => state.filterCountries)
     const countriesPerPage = 10
-    // let next =  maxmax + 1+ (current * 10)
+  
     
     function agregarUno(){
         if(!filterCountries[(current * 10) + 10]) return 
@@ -28,14 +27,14 @@ export default function Pagination (){
 
     function retornarBoton(val){
         return (
-        <button onClick={irALaPrimeraPagina}>{'button'}</button>
+        <button className={s.button} onClick={irALaPrimeraPagina}>{'|<<'}</button>
         
         )
     }
 
     function retornarBoton2(val){
         return (
-        <button onClick={irALaUltimaPagina}>{'button'}</button>
+        <button className={s.button} onClick={irALaUltimaPagina}>{'>>|'}</button>
         
         )
     }
@@ -69,11 +68,17 @@ export default function Pagination (){
         <div className={s.div}>
 
             <div className={s.nav}>
-              {current !== 0 && retornarBoton()}  
-              <button onClick={restarUno}>{'<'}</button>
-              <p>{current + 1}</p>
-              <button onClick={agregarUno}>{'>'}</button>
-              {filterCountries[(current * 10) + 10] && retornarBoton2()}
+              {/* {current !== 0 && retornarBoton()}   */}
+              <button className={s.button} onClick={irALaPrimeraPagina}>{'|<<'}</button>
+              <button className={s.button} onClick={restarUno}>{'<'}</button>
+
+              <div className={s.current}>
+                <p>{current + 1}</p>
+              </div>
+
+              <button className={s.button} onClick={agregarUno}>{'>'}</button>
+              <button className={s.button} onClick={irALaUltimaPagina}>{'>>|'}</button>
+              {/* {filterCountries[(current * 10) + 10] && retornarBoton2()} */}
             </div>
 
             <div className={s.page}>

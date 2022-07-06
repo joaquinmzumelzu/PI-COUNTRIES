@@ -10,16 +10,13 @@ export default function Home (props){
     
     return (
         <div className={s.div}>
-
-          {/* <div className={s.filters}> */}
-            <Filters/>
-          {/* </div> */}
+          
+          <Filters/>
            
            <div className={s.effect}>
 
            <div className={s.title}>
-             <h1>HOME</h1>
-             <Link to ='/activity'>CREATE ACTIVITY</Link>
+             <h1 className={s.text}>HOME</h1>
            </div>
 
            <Container/>

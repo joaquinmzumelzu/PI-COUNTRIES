@@ -88,14 +88,14 @@ export default function Filters (props){
             <div className={s.form}>
               <p>Country name</p>
               <form>
-                <input value={input.value} onChange={(e) => handleInputChanges(e)}></input>
+                <input className={s.input} value={input.value} onChange={(e) => handleInputChanges(e)}></input>
               </form> 
             </div>
 
 
             <div className={s.orderBy}>
               <p>Order by</p>
-              <select onChange={e => handleFilterChanges(e)}>
+              <select className={s.options} onChange={e => handleFilterChanges(e)}>
 
                 <option>A - Z</option>
                 <option>Z - A</option>
@@ -115,7 +115,7 @@ export default function Filters (props){
                 <p>Continents</p>
                 <form onChange={handleCheckBoxChanges}>
 
-                  <input value='Antarctica'type='checkbox'></input>Antarctica<br/>
+                  <input className={s.options} value='Antarctica'type='checkbox'></input>Antarctica<br/>
                   <input value='Africa'type='checkbox'></input>Africa<br/>
                   <input value='Asia'type='checkbox'></input>Asia<br/>
                   <input value='Europe'type='checkbox'></input>Europe<br/>
@@ -129,7 +129,7 @@ export default function Filters (props){
               <div className={s.fActivities}>
                 <p>Activities</p>
 
-                <select onChange={handleActivitiyChanges} defaultValue={filter.activities}>
+                <select className={s.options} onChange={handleActivitiyChanges} defaultValue={filter.activities}>
                   <option value='none'>None</option>
                   {allActivities?.map(e => {
                     return <option value={e.name}>{e.name}</option>

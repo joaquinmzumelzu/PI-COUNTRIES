@@ -8,5 +8,28 @@
 
     padding: 2%;
     padding-top: 8%;
+    font-family: Times new Roman;
+}
+
+.input {
+    background: rgba(52, 65, 116, 0.44);
+    
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64);
+    color: white;
+    font-family: Times new Roman;
+}
+
+.options{
+    background: rgba(52, 65, 116, 0.44);
+    
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64);
+    color: white;
+    font-family: Times new Roman;
 }
 

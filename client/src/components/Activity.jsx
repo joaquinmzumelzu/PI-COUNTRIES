@@ -59,7 +59,7 @@ export default function Activity (props){
       let check = actCountries.find(c => c.name === countrie.name)
       if(check) return
 
-      setActCountries([...actCountries, {name:countrie.name, id: countrie.ID}]) 
+      setActCountries([...actCountries, {name:countrie.name, id: countrie.ID, img: countrie.img}]) 
       setForm({...form, countries:[...form.countries,{name:countrie.name, id: countrie.ID}]})
     }
     
@@ -103,23 +103,24 @@ export default function Activity (props){
 
     return (
         <div className={s.div}>
-          <Link to='/countries'>aqui</Link>
+
+          <div className={s.form}>
+            
+          
           <form onSubmit={postear}>
 
             <div className={s.name}>
-              <p>Activity name</p>  
-              <input value={form.name} onChange={nameToState} type='text' required ></input>
-              <p>llena este espacio amigo</p>
+              <p className={s.p}>Activity name</p>  
+              <input className={s.input} value={form.name} onChange={nameToState} type='text' required ></input>
             </div>
             
             <div className={s.duration}>
-              <p>Activity duration (minutes)</p>  
-              <input value={form.duration} onChange={durationToState} type='text' required ></input>
-              <p>llena este espacio amigo</p>
+              <p className={s.p}>Activity duration (minutes)</p>  
+              <input className={s.input} value={form.duration} onChange={durationToState} type='text' required ></input>
             </div>
 
             <div className={s.difficulty}>
-              <select defaultValue="Select option" onChange={difficultyToState}>
+              <select className={s.options} defaultValue="Select option" onChange={difficultyToState}>
                 <option disabled value="Select option">Select activity difficulty</option>
                 <option value="1">1 - Easy</option>
                 <option value="2">2 - Upper Easy</option>
@@ -130,7 +131,7 @@ export default function Activity (props){
             </div>
 
             <div className={s.season}>
-              <select defaultValue="Select option" onChange={seasonToState}>
+              <select className={s.options} defaultValue="Select option" onChange={seasonToState}>
               <option disabled value="Select option">Select activity season</option>
                 <option value="Summer">Summer</option>
                 <option value="Winter">Winter</option>
@@ -141,8 +142,8 @@ export default function Activity (props){
             </div>
 
             <div className={s.countries}>
-              <select defaultValue="Select option" onChange={handleCountries}>
-              <option disabled value="Select option">Select activity season</option>
+              <select className={s.options} defaultValue="Select option" onChange={handleCountries}>
+              <option disabled value="Select option">Select countries</option>
                 {sorted?.map(e => {
                     return <option key={e.name}>{e.name}</option>
                 })}
@@ -150,21 +151,56 @@ export default function Activity (props){
             </div>
 
             <div className={s.selectedCountries}>
-              {actCountries?.map(e => {
+             {/* <select defaultValue='Select option'>
+               <option disabled value='Select option'>Selected Countries</option>
+               {actCountries?.map(e => {
+                 return <>
+                <option >{e.name}</option>
+                <>
+                  <button>x</button>
+                </>
+                
+
+                
+                </>
+                 
+
+                })} 
+             </select> */}
+             
+              {/* {actCountries?.map(e => {
                 return <div>
-                  <label>{e.name}</label>
-                  <span>
+                <label>{e.name}</label>
+                <span>
                     <button onClick={deleteLabel} value={e.name} >X</button>
                   </span>
-                </div>
-              })}
+                  </div>
+                })} */}
             </div>
 
             <div>
-                <button type='submit'>SUBMIT</button>
+                <button className={s.options} type='submit'>SUBMIT</button>
             </div>
 
           </form>
+          
+          </div>
+
+          <div onClick={deleteLabel} className={s.container}>
+            {actCountries?.map(e => {
+              return (
+                <div className={s.cardMini}>
+
+                  <button onClick={deleteLabel} value={e.name} className={s.cardMiniButton}>X
+                  </button>
+                  <img className={s.cardMiniImg} alt='bandera' src={e.img}></img>    
+                  <p className={s.cardMiniP1}>{e.name}</p>
+                </div>
+
+              ) 
+            })}
+          </div>
+          
         </div>
     )
 }

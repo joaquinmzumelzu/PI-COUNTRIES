@@ -1,0 +1,168 @@
+.div {
+    margin: 0;
+    background-image: url('../imgs/38858-tierra.jpg');
+    background-size: cover;
+    
+    background-attachment:fixed;
+    background-repeat:repeat ;
+    min-height: 100%;
+
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    font-family: Times new Roman;
+}
+
+.form {
+    margin-left: 50px;
+    
+}
+
+.input {
+    background: rgba(52, 65, 116, 0.44);
+    /* border-radius: 16px; */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64);
+    color: white;
+    width: 300px;
+    font-family: Times new Roman;
+}
+
+.name {
+    /* background: rgba(52, 65, 116, 0.44);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64); */
+    color: white;
+    margin-bottom: 30px;
+
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+
+}
+
+.duration {
+    /* background: rgba(52, 65, 116, 0.44);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64); */
+    color: white;
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.p {
+    font-size: 14px;
+    margin-bottom: 0%;
+}
+
+.difficulty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Times new Roman;
+}
+
+.options {
+    background: rgba(52, 65, 116, 0.44);
+    
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64);
+    color: white;
+    margin-bottom: 30px;
+    width: 300px;
+    font-family: Times new Roman;
+}
+
+.season {
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+}
+
+.countries {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-left: 40px;
+    height: 100vh;
+    width: 60%;
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.cardMini {
+    min-width: 12vw;
+    max-width: 12vw;
+    height: 160px;
+
+    background: rgba(52, 65, 116, 0.44);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64);
+    margin: 4px;
+    margin-bottom: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardMiniImg {  
+    box-sizing: border-box;
+    padding: 6px;
+    width: 95%;
+    
+    aspect-ratio: 3/2;
+    
+}
+
+.cardMiniP1 {
+    margin-top: 0%;
+    object-fit: cover;
+    color: white    ;
+    text-align: center;
+}
+
+.cardMiniButton {
+    margin-top: 1%;
+    background: rgba(52, 65, 116, 0.44);
+    /* border-radius: 16px; */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(52, 65, 116, 0.64);
+    color: white;
+}
