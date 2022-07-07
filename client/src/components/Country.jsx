@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { getByPK } from '../redux/actions';
 import s from '../styles/Country.module.css'
+import ActivityPagination from './ActivityPagination';
+import Pagination from './Pagination';
 
 //
 
@@ -57,14 +59,16 @@ export default function Country(props){
             {!countryPK.atractives.length && retornarNoActivities()}
             <div className={s.container}>
 
-            {countryPK.atractives && countryPK.atractives?.map(e => {
+            {/* {countryPK.atractives && countryPK.atractives?.map(e => {
               return <div className={s.miniCard}>
                   <p className={s.textName}>{e.name}</p>
                   <p className={s.textGeneric}>{`Difficulty: ${e.difficulty}-${dificultades[e.difficulty]}`}</p>
                   <p className={s.textGeneric}>{`${e.duration} minutes`}</p>
                   <p className={s.textGeneric}>{`Season: ${e.season[0].toUpperCase() + e.season.slice(1)}`}</p>
                   </div>
-            })}
+            })} */}
+
+            {!!countryPK.atractives.length && <ActivityPagination/>}
             </div>
           </div>
 
