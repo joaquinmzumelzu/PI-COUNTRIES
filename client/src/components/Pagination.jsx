@@ -12,7 +12,7 @@ export default function Pagination (){
     const [currentPage, setCurrentPage] = useState([])
     const max = 9
     const filterCountries = useSelector(state => state.filterCountries)
-    const countriesPerPage = 10
+
   
     
     function agregarUno(){
@@ -23,20 +23,6 @@ export default function Pagination (){
     function restarUno(){
         if(current === 0) return
         setCurrent(current -1 )
-    }
-
-    function retornarBoton(val){
-        return (
-        <button className={s.button} onClick={irALaPrimeraPagina}>{'|<<'}</button>
-        
-        )
-    }
-
-    function retornarBoton2(val){
-        return (
-        <button className={s.button} onClick={irALaUltimaPagina}>{'>>|'}</button>
-        
-        )
     }
 
     function irALaPrimeraPagina(){

@@ -1,9 +1,6 @@
 //
 import { Link } from 'react-router-dom'
 import s from '../styles/Header.module.css'
-
-import home from '../imgs/home.jpg'
-import agregar from '../imgs/agregar.png'
 //
 
 export default function Header (props){

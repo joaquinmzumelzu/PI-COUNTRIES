@@ -21,6 +21,11 @@
 .link {
     text-decoration: none;
 }
+.div:hover {
+ 
+box-shadow: 0 2px 15px white;
+
+}
 
 
 .img {  

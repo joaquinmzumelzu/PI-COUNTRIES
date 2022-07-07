@@ -21,7 +21,7 @@ export default function Filters (props){
     Oceania : false,
     SouthAmerica:false,
   });
-  const [activities, setActivities ] = React.useState('none')
+
   
   const allActivities = useSelector(state => state.allActivities)
   // let query = useSelector(state => state.filter.query)
@@ -51,12 +51,12 @@ export default function Filters (props){
 
   function handleActivitiyChanges(e){
     e.preventDefault() 
-    setActivities(e.target.value)
+    
     dispatch(setActivitiesC(e.target.value))
   }
   
-  useEffect(() => dispatch(searchCountries(input.value)) , [input])
-  useEffect(() => dispatch(orderBY(orderBy)) , [orderBy])
+  useEffect(() => dispatch(searchCountries(input.value)) , [input,dispatch])
+  useEffect(() => dispatch(orderBY(orderBy)) , [orderBy,dispatch])
   useEffect(() => {
     // let continents2 = [...continents]
     let array = [];
@@ -74,12 +74,12 @@ export default function Filters (props){
       }
     }
     dispatch(SETContinents(array)) 
-  },[continents])
+  },[continents,dispatch])
 
   const filter = useSelector(state => state.filter)
   useEffect(() => {
       dispatch(setActivitiesC(filter.activities))
-  }, [])
+  }, [dispatch,filter.activities])
 
 
     return (

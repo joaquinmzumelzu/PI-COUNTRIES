@@ -2,11 +2,12 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import s from '../styles/Activity.module.css'
-import CardMini from './CardMini';
+
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { getAllActivities, getAllActivitiesCountries } from '../redux/actions';
-import { Link } from 'react-router-dom';
+import {  getAllActivities, getAllActivitiesCountries,getCountries} from '../redux/actions';
+
+
 //
 
 export default function Activity (props){
@@ -19,14 +20,15 @@ export default function Activity (props){
     const [form, setForm] = useState({
       name : '',
       duration: '',
-      difficulty: '',
-      season: '',
-      countries: [] 
+      difficulty: 'Select option',
+      season: 'Select option',
+      countries: [],
+      countriesSelect:'Select option' 
     })
+    
+    // const[errors,setErrors] = useState({})
 
-    const[errors,setErrors] = useState({})
-
-    const allActivities = useSelector(state => state.allActivities)
+    // const allActivities = useSelector(state => state.allActivities)
 
 //-------------------------------------------------------------------------------
     function nameToState(e){
@@ -60,23 +62,36 @@ export default function Activity (props){
       if(check) return
 
       setActCountries([...actCountries, {name:countrie.name, id: countrie.ID, img: countrie.img}]) 
-      setForm({...form, countries:[...form.countries,{name:countrie.name, id: countrie.ID}]})
+      setForm({...form, countries:[...form.countries,{name:countrie.name, id: countrie.ID}],countriesSelect: e.target.value })
+      // setForm({...form, countriesSelect: e.target.value})
     }
     
     function deleteLabel (e){
       e.preventDefault()
       setActCountries(actCountries.filter(c => c.name !== e.target.value ))
       setForm({...form,countries: form.countries.filter(c => c.name !== e.target.value )})
+     
     }
 
  //-------------------------------------------------------------------------------   
+    function resetForm(){
+      setForm({
+        name : '',
+        duration: '',
+        difficulty: 'Select option',
+        season: 'Select option',
+        countries: [],
+        countriesSelect: 'Select option' 
+      })
+      setActCountries([])
+    } 
 
     function validate(){
       let errors = []
       if(!form.name) errors.push('Activity name is required');
       if(!form.duration) errors.push('Activity duration is required');
-      if(!form.difficulty) errors.push('Activity difficulty is required');
-      if(!form.season) errors.push('Activity season is required');
+      if(!form.difficulty || form.difficulty === 'Select option') errors.push('Activity difficulty is required');
+      if(!form.season || form.season === 'Select option') errors.push('Activity season is required');
       if(!form.countries.length) errors.push('At least 1 countrie is required');
       
       return errors;
@@ -91,7 +106,7 @@ export default function Activity (props){
       
      await axios.post('http://localhost:3001/activities', obj)
       .then(function (response) {
-        console.log(response);
+        alert('activity were added succesfully');
       })
       .catch(function (error) {
         console.log(error);
@@ -99,7 +114,90 @@ export default function Activity (props){
       
       dispatch(getAllActivities())
       dispatch(getAllActivitiesCountries())
+      resetForm()
+
+      
     }
+    //-------------------------------------------------------------------------
+    //PAGINADOOOOOOOOOOOOO
+
+    const [current, setCurrent] = useState(0)
+    const [currentPage, setCurrentPage] = useState([])
+ 
+
+  
+    
+    function agregarUno(){
+        if(!actCountries[(current * 8) + 8]) return 
+        setCurrent(current + 1)
+    }
+
+    function restarUno(){
+        if(current === 0) return
+        setCurrent(current -1 )
+    }
+
+    function irALaPrimeraPagina(){
+        setCurrent(0)
+    }
+
+    function irALaUltimaPagina(){
+        let current2 = (current * 8) + 8
+        while(actCountries[current2]){
+          current2 = current2 + 8
+        }
+        current2 = Math.ceil((current2 - 8) /8)
+        setCurrent(current2)
+    }
+
+    useEffect(() => {
+      setCurrentPage(actCountries.slice((current * 8), 8 + (current * 8)))
+    }, [current,actCountries])
+// ---------------------------------------------------------------------------------
+  function retornarPaginado() {
+    
+    return (
+      <div className={s.divv}>
+
+          <div className={s.nav}>
+         
+            <button className={s.button} onClick={irALaPrimeraPagina}>{'|<<'}</button>
+            <button className={s.button} onClick={restarUno}>{'<'}</button>
+
+            <div className={s.current}>
+              <p>{current + 1}</p>
+            </div>
+
+            <button className={s.button} onClick={agregarUno}>{'>'}</button>
+            <button className={s.button} onClick={irALaUltimaPagina}>{'>>|'}</button>
+           
+          </div>
+
+          <div className={s.page}>
+            {currentPage?.map(e => {
+              return <div className={s.cardMini}>
+
+                         <button onClick={deleteLabel} value={e.name} className={s.cardMiniButton}>X
+                         </button>
+                         <img className={s.cardMiniImg} alt='bandera' src={e.img}></img>    
+                         <p className={s.cardMiniP1}>{e.name}</p>
+            </div>
+            }) }
+          </div>
+       
+      </div>
+  )
+  }
+
+
+
+//----------------------------------------------------------------------------------
+
+
+    useEffect(() => {
+      if(!allCountries.length) dispatch(getCountries())
+    },[dispatch, allCountries.length])
+
 
     return (
         <div className={s.div}>
@@ -120,7 +218,7 @@ export default function Activity (props){
             </div>
 
             <div className={s.difficulty}>
-              <select className={s.options} defaultValue="Select option" onChange={difficultyToState}>
+              <select value={form.difficulty} className={s.options} defaultValue="Select option" onChange={difficultyToState}>
                 <option disabled value="Select option">Select activity difficulty</option>
                 <option value="1">1 - Easy</option>
                 <option value="2">2 - Upper Easy</option>
@@ -131,7 +229,7 @@ export default function Activity (props){
             </div>
 
             <div className={s.season}>
-              <select className={s.options} defaultValue="Select option" onChange={seasonToState}>
+              <select value={form.season} className={s.options} defaultValue="Select option" onChange={seasonToState}>
               <option disabled value="Select option">Select activity season</option>
                 <option value="Summer">Summer</option>
                 <option value="Winter">Winter</option>
@@ -142,7 +240,7 @@ export default function Activity (props){
             </div>
 
             <div className={s.countries}>
-              <select className={s.options} defaultValue="Select option" onChange={handleCountries}>
+              <select value={form.countriesSelect} className={s.options} defaultValue="Select option" onChange={handleCountries}>
               <option disabled value="Select option">Select countries</option>
                 {sorted?.map(e => {
                     return <option key={e.name}>{e.name}</option>
@@ -151,54 +249,21 @@ export default function Activity (props){
             </div>
 
             <div className={s.selectedCountries}>
-             {/* <select defaultValue='Select option'>
-               <option disabled value='Select option'>Selected Countries</option>
-               {actCountries?.map(e => {
-                 return <>
-                <option >{e.name}</option>
-                <>
-                  <button>x</button>
-                </>
-                
-
-                
-                </>
-                 
-
-                })} 
-             </select> */}
-             
-              {/* {actCountries?.map(e => {
-                return <div>
-                <label>{e.name}</label>
-                <span>
-                    <button onClick={deleteLabel} value={e.name} >X</button>
-                  </span>
-                  </div>
-                })} */}
+     
             </div>
 
             <div>
-                <button className={s.options} type='submit'>SUBMIT</button>
+                <button className={`${s.options}`} type='submit'>SUBMIT</button>
             </div>
 
           </form>
           
           </div>
 
-          <div onClick={deleteLabel} className={s.container}>
-            {actCountries?.map(e => {
-              return (
-                <div className={s.cardMini}>
+          <div className={s.container}>
+         
+            {!!actCountries.length && retornarPaginado()}
 
-                  <button onClick={deleteLabel} value={e.name} className={s.cardMiniButton}>X
-                  </button>
-                  <img className={s.cardMiniImg} alt='bandera' src={e.img}></img>    
-                  <p className={s.cardMiniP1}>{e.name}</p>
-                </div>
-
-              ) 
-            })}
           </div>
           
         </div>

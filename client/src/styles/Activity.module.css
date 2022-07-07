@@ -118,6 +118,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
 
 }
 
@@ -165,4 +166,73 @@
     -webkit-backdrop-filter: blur(10.2px);
     border: 1px solid rgba(52, 65, 116, 0.64);
     color: white;
+}
+
+.cardMiniButton:hover {
+    box-shadow: 0 1px 10px white;
+}
+
+.nav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    color: white;
+}
+
+.page{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-evenly;
+}
+
+.divv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.button {
+    background: rgba(40, 67, 120, 0.68);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.7px);
+-webkit-backdrop-filter: blur(9.7px);
+border: 1px solid rgba(40, 67, 120, 0.64);
+color: white;
+}
+
+.button:hover {
+    box-shadow: 0 1px 10px white;
+}
+
+.current {
+    background: rgba(40, 67, 120, 0.68);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.7px);
+-webkit-backdrop-filter: blur(9.7px);
+border: 1px solid rgba(40, 67, 120, 0.64);
+
+height: 30px;
+width: 30px;
+
+display: flex;
+text-align: center;
+justify-content: center;
+align-items: center;
+align-content: center;
+
+
+}
+
+.options:hover {
+    box-shadow: 0 1px 10px white;
+}
+
+.input:hover{
+    box-shadow: 0 1px 10px white;
 }

@@ -1,12 +1,12 @@
 //
-
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getByPK } from '../redux/actions';
 import s from '../styles/Country.module.css'
 import ActivityPagination from './ActivityPagination';
-import Pagination from './Pagination';
+import { getCountries } from '../redux/actions';
+
 
 //
 
@@ -14,7 +14,7 @@ export default function Country(props){
     const params = useParams()
     const dispatch = useDispatch();
     const countryPK = useSelector(state => state.countryPK)
-    const dificultades = [null,'Easy', 'Upper Easy', 'Medium', 'Advanced', 'Pro']
+    const allCountries = useSelector(state => state.allCountries)
 
     function retornarH1(){
         return (
@@ -22,6 +22,16 @@ export default function Country(props){
               <h1 className={s.h1}>Activities</h1>  
             </div>
         )
+    }
+
+    function retornarNotFound(){
+      return <div className={s.divvv}>
+        <h1 className={s.h1}>Country not found, please check your search!</h1>
+        <Link to='/countries'>
+        
+        <button className={s.button}>Return home!</button>
+        </Link>
+      </div>
     }
 
     function retornarNoActivities(){
@@ -80,12 +90,17 @@ export default function Country(props){
     useEffect(() => {
       dispatch(getByPK(params.id))
 
-    },[Country])
+    },[dispatch,params.id ])
+
+    useEffect(() => {
+      if(!allCountries.length) dispatch(getCountries())
+    },[dispatch, allCountries.length])
 
     return (
         <div className={s.div}>
         
         {countryPK.name && retornarDetails()}
+        {!countryPK.name && retornarNotFound()}
          
         </div>
     )

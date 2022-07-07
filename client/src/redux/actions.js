@@ -1,4 +1,4 @@
- import axios from "axios";
+
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const SEARCH_COUNTRIES = "SEARCH_COUNTRIES"
@@ -10,6 +10,11 @@ export const SET_ACTIVITIES_C = 'SET_ACTIVITIES_C'
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES'
 export const GET_ALL_ACTIVITIES_COUNTRIES = 'GET_ALL_ACTIVITIES_COUNTRIES'
 export const GET_BY_PK = 'GET_BY_PK'
+export const SET_FORM_COUNTRIES = 'SET_FORM_COUNTRIES'
+
+export const DELETE_COUNTRIE_FROM_FORM = 'DELETE_COUNTRIE_FROM_FORM'
+
+export const RESET_COUNTRIE_FORM = 'RESET_COUNTRIE_FORM'
 
 
 
@@ -78,4 +83,16 @@ export function getByPK (id){
         .then(data=> dispatch({type:GET_BY_PK,payload:data}))
         .catch(e => console.log(e))  
     }
+}
+
+export function setFormCountries (value) {
+    return {type: SET_FORM_COUNTRIES, payload:value}
+}
+
+export function deleteCountrieFromForm (value) {
+    return {type: DELETE_COUNTRIE_FROM_FORM, payload:value}
+}
+
+export function resetCountrieForm (value) {
+    return {type: RESET_COUNTRIE_FORM, payload:value}
 }

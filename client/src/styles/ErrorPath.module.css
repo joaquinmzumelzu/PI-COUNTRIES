@@ -1,0 +1,29 @@
+.div {
+    min-height: 100vh;
+    background-image: url('../imgs/38858-tierra.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h1{
+    color: white;
+    font-family: Times New Roman;
+}
+
+.button {
+  
+    background: rgba(40, 67, 120, 0.68);
+
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.7px);
+-webkit-backdrop-filter: blur(9.7px);
+border: 1px solid rgba(40, 67, 120, 0.64);
+color: white;
+min-height: 30px;
+}
+
+.button:hover{
+    box-shadow: 0 1px 10px white;
+}

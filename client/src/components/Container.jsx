@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getAllActivitiesCountries, setCountries } from '../redux/actions'
+import { getAllActivitiesCountries, getCountries, setCountries } from '../redux/actions'
 import s from '../styles/Container.module.css'
-import Card from './Card'
 import Pagination from './Pagination'
 //
 
@@ -15,7 +14,6 @@ export default function Container (props){
     
     
     
-    let filterCountries = useSelector(state => state.filterCountries)
     const filter = useSelector(state => state.filter)
     const activityCountrie = useSelector(state => state.activityCountrie)
     useEffect(() => {
@@ -49,9 +47,14 @@ export default function Container (props){
       
       
       dispatch(setCountries(filtrados))
-    }, [filter,allCountries,dispatch])
+    }, [filter,allCountries,activityCountrie,dispatch])
     
-    useEffect(() => dispatch(getAllActivitiesCountries()),[filter])
+    useEffect(() => dispatch(getAllActivitiesCountries()),[dispatch])
+
+    useEffect(() => {
+      if(!allCountries.length) dispatch(getCountries())
+    },[dispatch, allCountries.length])
+
     return (
         <div className={s.div}>
            <Pagination/>
